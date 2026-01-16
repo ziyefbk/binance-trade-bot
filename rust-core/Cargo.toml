@@ -1,0 +1,63 @@
+[package]
+name = "binance-rust-core"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "binance_rust_py"
+crate-type = ["cdylib"]
+
+[dependencies]
+# 异步运行时
+tokio = { version = "1.35", features = ["full"] }
+
+# WebSocket
+tokio-tungstenite = { version = "0.21", features = ["rustls-tls-native-roots"] }
+futures-util = "0.3"
+
+# HTTP 客户端
+reqwest = { version = "0.11", features = ["json", "rustls-tls"] }
+
+# 序列化
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Python 绑定
+pyo3 = { version = "0.20", features = ["extension-module"] }
+
+# 并发数据结构
+dashmap = "5.5"
+
+# 日志
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# 错误处理
+anyhow = "1.0"
+thiserror = "1.0"
+
+# 加密（用于 API 签名）
+hmac = "0.12"
+sha2 = "0.10"
+hex = "0.4"
+
+# 时间处理
+chrono = "0.4"
+
+# URL 编码
+url = "2.5"
+
+# 环境变量
+dotenv = "0.15"
+
+# 随机数生成（用于测试）
+rand = "0.8"
+
+[dev-dependencies]
+tokio-test = "0.4"
+
+[profile.release]
+opt-level = 3            # 最高优化级别
+lto = true               # 链接时优化
+codegen-units = 1        # 单编译单元（更好的优化）
+strip = true             # 移除符号信息，减小体积

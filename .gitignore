@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.so
+*.pyc
 .Python
 build/
 develop-eggs/
@@ -20,7 +21,6 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
-*.pyc
 
 # Virtual environments
 venv/
@@ -40,7 +40,6 @@ Cargo.lock
 *.swp
 *.swo
 *~
-.DS_Store
 
 # Logs
 logs/
@@ -48,7 +47,10 @@ logs/
 
 # Config with sensitive data
 config/config.yaml
+config/trading_pairs.yaml
 !config/config.example.yaml
+*.secret
+*.key
 
 # Test outputs
 .pytest_cache/
@@ -64,8 +66,9 @@ htmlcov/
 *.ipynb
 
 # OS
-Thumbs.db
 .DS_Store
+Thumbs.db
+desktop.ini
 
 # Binaries and compiled files
 *.whl
@@ -78,3 +81,12 @@ Thumbs.db
 *.tmp
 *.temp
 *.bak
+
+# Data files
+data/
+*.csv
+*.db
+*.sqlite
+
+# Backtest results
+backtest_results/

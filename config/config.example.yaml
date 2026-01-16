@@ -1,0 +1,52 @@
+# 币安 API 配置
+api:
+  key: "your_api_key_here"           # 替换为你的 API Key
+  secret: "your_api_secret_here"     # 替换为你的 API Secret
+  testnet: true                      # true = 测试网, false = 正式网
+
+# 策略配置
+strategy:
+  mode: "hybrid"  # triangular | funding_rate | hybrid
+
+  # 三角套利策略参数
+  triangular:
+    min_profit_percent: 0.15         # 最小利润阈值（扣除手续费后）
+    max_position_usdt: 100           # 单笔最大仓位 (USDT)
+    scan_interval_ms: 100            # 扫描间隔 (毫秒)
+
+  # 资金费率套利参数
+  funding_rate:
+    min_rate_percent: 0.1            # 最小费率阈值 (%)
+    leverage: 3                      # 杠杆倍数 (2-3 倍推荐)
+    position_percent: 60             # 占总资金比例 (%)
+
+# 风险控制参数
+risk:
+  max_total_position_percent: 95     # 最大总仓位占比 (%)
+  max_single_trade_percent: 20       # 单笔交易最大占比 (%)
+  stop_loss_percent: 2.0             # 止损百分比 (%)
+
+# 交易对配置（只交易主流币种）
+trading_pairs:
+  - BTCUSDT
+  - ETHUSDT
+  - BNBUSDT
+  - SOLUSDT
+  - XRPUSDT
+  - ADAUSDT
+  - DOGEUSDT
+  - MATICUSDT
+  - DOTUSDT
+  - LTCUSDT
+
+# 监控配置
+monitoring:
+  dashboard_refresh_interval_ms: 1000  # 面板刷新间隔
+  log_level: "INFO"                    # DEBUG | INFO | WARNING | ERROR
+  log_file: "logs/trading.log"         # 日志文件路径
+
+# 回测配置
+backtest:
+  start_date: "2024-01-01"            # 开始日期
+  end_date: "2024-12-31"              # 结束日期
+  initial_capital: 500                # 初始资金 (USDT)

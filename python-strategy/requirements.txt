@@ -1,0 +1,26 @@
+# Python 策略层依赖
+
+# 核心库
+pyyaml>=6.0
+pandas>=2.0.0
+numpy>=1.24.0
+
+# 监控和日志
+rich>=13.0.0
+
+# 数据可视化
+matplotlib>=3.7.0
+plotly>=5.14.0
+
+# 回测
+backtrader>=1.9.76
+
+# 测试
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-asyncio>=0.21.0
+
+# 代码质量
+pylint>=2.17.0
+black>=23.0.0
+mypy>=1.4.0
