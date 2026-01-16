@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  binance-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: binance-arbitrage-bot
+    restart: unless-stopped
+
+    # Volume mounts for configuration and data persistence
+    volumes:
+      # Mount config file (create from example first)
+      - ./config/config.yaml:/app/config/config.yaml:ro
+
+      # Mount logs directory for persistence
+      - ./logs:/app/logs
+
+      # Optional: mount backtest data
+      - ./data:/app/data
+
+    # Environment variables (can also be set in .env file)
+    environment:
+      - RUST_LOG=info
+      - PYTHONUNBUFFERED=1
+
+      # Optional: Override config values via environment
+      # - BINANCE_API_KEY=${BINANCE_API_KEY}
+      # - BINANCE_API_SECRET=${BINANCE_API_SECRET}
+
+    # Network mode
+    network_mode: bridge
+
+    # Resource limits (adjust based on your needs)
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+    # Health check (optional)
+    healthcheck:
+      test: ["CMD", "python", "-c", "import binance_rust_py; print('OK')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+    # Override default command for different modes:
+    # Backtest mode (default, safe):
+    command: ["python", "main.py", "--backtest"]
+
+    # Testnet mode (uncomment to use):
+    # command: ["python", "main.py", "--testnet"]
+
+    # Live trading mode (USE WITH CAUTION):
+    # command: ["python", "main.py", "--live"]
+
+# Optional: Add a monitoring service (e.g., Prometheus, Grafana)
+# Uncomment below if you want to add monitoring in the future
+#
+# volumes:
+#   prometheus_data: {}
+#   grafana_data: {}

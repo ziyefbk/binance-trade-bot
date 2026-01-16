@@ -1,0 +1,68 @@
+# Rust build artifacts
+rust-core/target/
+rust-core/Cargo.lock
+**/*.rs.bk
+
+# Python cache
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+wheels/
+.pytest_cache/
+.coverage
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Data
+data/
+backtest_results/
+
+# Secrets (IMPORTANT)
+config/config.yaml
+.env
+*.key
+*.pem
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation (keep in image)
+# README.md
+# docs/
+
+# Test files
+tests/
+*.test
+
+# Temporary files
+tmp/
+temp/
+*.tmp
