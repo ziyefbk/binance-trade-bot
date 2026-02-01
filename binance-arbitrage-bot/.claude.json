@@ -1,0 +1,10 @@
+{
+  "disabledMcpServers": [],
+  "preferences": {
+    "model": "claude-sonnet-4-5",
+    "context": {
+      "type": "file",
+      "path": "./.claude/context.md"
+    }
+  }
+}
